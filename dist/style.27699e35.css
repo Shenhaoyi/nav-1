@@ -54,7 +54,13 @@ body {
   padding: 0px 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  cursor: text; /*手指*/
+  cursor: text;
+  font-size: 16px;
+}
+@media (max-width: 500px) {
+  .searchForm > input {
+    font-size: 20px;
+  }
 }
 .searchForm > button {
   white-space: nowrap; /*不要换行*/
@@ -164,4 +170,4 @@ body {
 }
 
 
-/*# sourceMappingURL=style.a0f888bd.css.map */
+/*# sourceMappingURL=style.27699e35.css.map */
