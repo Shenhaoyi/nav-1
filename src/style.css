@@ -63,6 +63,7 @@ body {
   background: #0282b9;
   color: white;
   font-size: 16px;
+  cursor: pointer; /*手指*/
 }
 .globalMain {
   max-width: 900px;
