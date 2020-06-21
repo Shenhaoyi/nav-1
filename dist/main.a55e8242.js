@@ -120,8 +120,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"epB2":[function(require,module,exports) {
 var $siteList = $(".siteList");
 var $lastLi = $siteList.find("li.last");
-var x = localStorage.getItem("x");
-var xObject = JSON.parse(x);
+var x = localStorage.getItem("x"); //没有则null
+
+var xObject = JSON.parse(x); //如果没有则null
+
 var hashMap = xObject || [{
   logo: "A",
   url: "https://www.acfun.cn"
@@ -131,12 +133,12 @@ var hashMap = xObject || [{
 }];
 
 var simplifyUrl = function simplifyUrl(url) {
-  return url.replace("https://", "").replace("http://").replace("www.", "");
-}; //重写所有站点
+  return url.replace("https://", "").replace("http://", "").replace("www.", "");
+}; //重写所有站点(除了添加框)
 
 
 var render = function render() {
-  $siteList.find("li:not(.last)").remove(); //不要最后一个
+  $siteList.find("li:not(.last)").remove(); //除了最后一个都移除
   //对网页按logo进行排序
 
   hashMap.sort(function (a, b) {
@@ -149,7 +151,8 @@ var render = function render() {
     }
   });
   hashMap.forEach(function (node, index) {
-    var $li = $("<li>          \n        <div class=\"site\">\n            <div class=\"logo\">".concat(node.logo, "</div>\n            <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n            <div class=\"close\">\n              <svg class=\"icon\">\n                  <use xlink:href=\"#icon-close\"></use>\n              </svg>\n            </div>\n        </div>\n      </li>")).insertBefore($lastLi);
+    var $li = $("<li>          \n        <div class=\"site\">\n            <div class=\"logo\">".concat(node.logo, "</div>\n            <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n            <div class=\"close\">\n              <svg class=\"icon\">\n                  <use xlink:href=\"#icon-close\"></use>\n              </svg>\n            </div>\n        </div>\n      </li>")).insertBefore($lastLi); //事件监听
+
     $li.on("click", function (e) {
       window.open(node.url);
     });
@@ -212,4 +215,4 @@ $(document).on("keypress", function (e) {
   }
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.ac017539.js.map
+//# sourceMappingURL=main.a55e8242.js.map

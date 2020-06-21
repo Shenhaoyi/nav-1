@@ -1,19 +1,19 @@
 const $siteList = $(".siteList");
 const $lastLi = $siteList.find("li.last");
-const x = localStorage.getItem("x");
-const xObject = JSON.parse(x);
+const x = localStorage.getItem("x"); //没有则null
+const xObject = JSON.parse(x); //如果没有则null
 const hashMap = xObject || [
   { logo: "A", url: "https://www.acfun.cn" },
   { logo: "B", url: "https://www.bilibili.com" },
 ];
 
 const simplifyUrl = (url) => {
-  return url.replace("https://", "").replace("http://").replace("www.", "");
+  return url.replace("https://", "").replace("http://", "").replace("www.", "");
 };
 
-//重写所有站点
+//重写所有站点(除了添加框)
 const render = () => {
-  $siteList.find("li:not(.last)").remove(); //不要最后一个
+  $siteList.find("li:not(.last)").remove(); //除了最后一个都移除
   //对网页按logo进行排序
   hashMap.sort((a, b) => {
     if (a.logo > b.logo) {
@@ -38,6 +38,7 @@ const render = () => {
         </div>
       </li>`
     ).insertBefore($lastLi);
+    //事件监听
     $li.on("click", (e) => {
       window.open(node.url);
     });
