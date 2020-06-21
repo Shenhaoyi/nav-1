@@ -155,25 +155,33 @@ var render = function render() {
 render(); //点击添加站点
 
 $(".addButton").on("click", function () {
-  var url = window.prompt("请问你要添加网址是啥"); //弹窗并获得用户输入内容
+  var url = window.prompt("请输入你要添加的网址"); //弹窗并获得用户输入内容
 
-  if (url.indexOf("http") != 0) {
-    url = "https://" + url;
+  while (url === "") {
+    //输入不为空才添加
+    url = window.prompt("不能为空哦，请再次输入"); //点击“取消”返回的是null
   }
 
-  console.log(url);
-  hashMap.push({
-    logo: simplifyUrl(url)[0],
-    //.toUpperCase(),
-    logoType: "text",
-    url: url
-  });
-  render();
-}); //即将关闭数据保存
-// window.onbeforeunload = () => {
-//   const string = JSON.stringify(hashMap); //对象变字符串，localStorage只能存字符串
-//   window.localStorage.setItem("x", string);
-// };
+  if (url !== null) {
+    if (url.indexOf("http") != 0) {
+      url = "https://" + url;
+    }
+
+    hashMap.push({
+      logo: simplifyUrl(url)[0],
+      //.toUpperCase(),
+      logoType: "text",
+      url: url
+    });
+    render();
+  }
+}); // 即将关闭数据保存;
+
+window.onbeforeunload = function () {
+  var string = JSON.stringify(hashMap); //对象变字符串，localStorage只能存字符串
+
+  window.localStorage.setItem("x", string);
+};
 
 $(document).on("keypress", function (e) {
   var key = e.key;
@@ -185,4 +193,4 @@ $(document).on("keypress", function (e) {
   }
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.4f5e778d.js.map
+//# sourceMappingURL=main.4eb20c8e.js.map
