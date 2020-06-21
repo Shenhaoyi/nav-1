@@ -131,10 +131,11 @@ body {
   text-transform: uppercase; /*全部大写*/
 }
 .siteList .site > .link {
+  border: 1px solid red;
   font-size: 14px;
   margin-top: 4px;
   /*禁止换行，禁止溢出*/
-  word-spacing: nowrap;
+  white-space: nowrap;
   max-width: 80%;
   overflow: hidden;
 }
@@ -195,4 +196,4 @@ body {
 }
 
 
-/*# sourceMappingURL=style.fe75af2c.css.map */
+/*# sourceMappingURL=style.0f0a762d.css.map */
