@@ -22,18 +22,17 @@ img {
 /* style */
 body {
   background: #eee; /* 图片加载过程显示 */
-  background-image: url(https://dss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/skin/113.jpg?2);
-  background-repeat: no-repeat;
+  /* background-image: url(https://dss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/skin/113.jpg?2); */
+  /* background-repeat: no-repeat; */
   /* background-size: cover; */
-  background-size: cover;
   /*取值cover，目的是完全覆盖div，并且图片缩放至最小大小;取值contain，目的是在div中完全显示自己，并且图片缩放至最大大小*/
 }
 
-@media (max-width: 500px) {
+/* @media (max-width: 500px) {
   body {
     background-size: 100vh 100vh;
   }
-}
+} */
 
 .globalHeader {
   margin: 20px 20px;
@@ -192,4 +191,4 @@ body {
 }
 
 
-/*# sourceMappingURL=style.46bb669c.css.map */
+/*# sourceMappingURL=style.702ae42f.css.map */
