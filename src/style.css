@@ -137,6 +137,12 @@ body {
   top: 5px;
   display: block;
 }
+@media (max-width: 500px) {
+  .siteList .site > .close {
+    display: block;
+  }
+}
+
 .siteList .site > .close:hover {
   background: rgb(173, 84, 84);
 }
