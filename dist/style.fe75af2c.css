@@ -133,6 +133,10 @@ body {
 .siteList .site > .link {
   font-size: 14px;
   margin-top: 4px;
+  /*禁止换行，禁止溢出*/
+  word-spacing: nowrap;
+  max-width: 80%;
+  overflow: hidden;
 }
 .siteList .site > .close {
   position: absolute;
@@ -191,4 +195,4 @@ body {
 }
 
 
-/*# sourceMappingURL=style.702ae42f.css.map */
+/*# sourceMappingURL=style.fe75af2c.css.map */
