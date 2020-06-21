@@ -137,7 +137,17 @@ var simplifyUrl = function simplifyUrl(url) {
 
 var render = function render() {
   $siteList.find("li:not(.last)").remove(); //不要最后一个
+  //对网页按logo进行排序
 
+  hashMap.sort(function (a, b) {
+    if (a.logo > b.logo) {
+      return 1;
+    } else if (a.logo < b.logo) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
   hashMap.forEach(function (node, index) {
     var $li = $("<li>          \n        <div class=\"site\">\n            <div class=\"logo\">".concat(node.logo, "</div>\n            <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n            <div class=\"close\">\n              <svg class=\"icon\">\n                  <use xlink:href=\"#icon-close\"></use>\n              </svg>\n            </div>\n        </div>\n      </li>")).insertBefore($lastLi);
     $li.on("click", function (e) {
@@ -167,13 +177,22 @@ $(".addButton").on("click", function () {
       url = "https://" + url;
     }
 
-    hashMap.push({
-      logo: simplifyUrl(url)[0],
-      //.toUpperCase(),
-      logoType: "text",
-      url: url
-    });
-    render();
+    var logo = simplifyUrl(url)[0].toUpperCase();
+    var flag = true; //是否push的标志位
+
+    for (var i = 0; i < hashMap.length; i++) {
+      if (hashMap[i].logo === logo && simplifyUrl(hashMap[i].url).toLowerCase() === simplifyUrl(url).toLowerCase()) {
+        flag = false;
+      }
+    }
+
+    if (flag) {
+      hashMap.push({
+        logo: logo,
+        url: url
+      });
+      render();
+    }
   }
 }); // 即将关闭数据保存;
 
@@ -193,4 +212,4 @@ $(document).on("keypress", function (e) {
   }
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.4eb20c8e.js.map
+//# sourceMappingURL=main.ac017539.js.map

@@ -14,6 +14,16 @@ const simplifyUrl = (url) => {
 //重写所有站点
 const render = () => {
   $siteList.find("li:not(.last)").remove(); //不要最后一个
+  //对网页按logo进行排序
+  hashMap.sort((a, b) => {
+    if (a.logo > b.logo) {
+      return 1;
+    } else if (a.logo < b.logo) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
   hashMap.forEach((node, index) => {
     const $li = $(
       `<li>          
@@ -51,12 +61,24 @@ $(".addButton").on("click", () => {
     if (url.indexOf("http") != 0) {
       url = "https://" + url;
     }
-    hashMap.push({
-      logo: simplifyUrl(url)[0], //.toUpperCase(),
-      logoType: "text",
-      url: url,
-    });
-    render();
+    let logo = simplifyUrl(url)[0].toUpperCase();
+    let flag = true; //是否push的标志位
+    for (let i = 0; i < hashMap.length; i++) {
+      if (
+        hashMap[i].logo === logo &&
+        simplifyUrl(hashMap[i].url).toLowerCase() ===
+          simplifyUrl(url).toLowerCase()
+      ) {
+        flag = false;
+      }
+    }
+    if (flag) {
+      hashMap.push({
+        logo: logo,
+        url: url,
+      });
+      render();
+    }
   }
 });
 
