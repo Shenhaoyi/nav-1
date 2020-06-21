@@ -25,14 +25,17 @@ body {
   background-image: url(https://dss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/skin/113.jpg?2);
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 100vh;
+  /* min-width: 100vh; */
   /*取值cover，目的是完全覆盖div，并且图片缩放至最小大小;取值contain，目的是在div中完全显示自己，并且图片缩放至最大大小*/
 }
 
-@media (max-width: 500px) {
+/* @media (max-width: 500px) {
   body {
-    background-size: 100vh 100vh;
+    min-height: 100vh;
+    background-size: 100% 100%;
   }
-}
+} */
 
 .globalHeader {
   margin: 20px 20px;
@@ -195,4 +198,4 @@ body {
 }
 
 
-/*# sourceMappingURL=style.49c85cb1.css.map */
+/*# sourceMappingURL=style.b5ffec2b.css.map */
