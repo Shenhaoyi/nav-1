@@ -125,15 +125,30 @@ var x = localStorage.getItem("x"); //没有则null
 var xObject = JSON.parse(x); //如果没有则null
 
 var hashMap = xObject || [{
-  logo: "A",
-  url: "https://www.acfun.cn"
-}, {
   logo: "B",
   url: "https://www.bilibili.com"
+}, {
+  logo: 'B',
+  url: 'https://www.baidu.com'
+}, {
+  logo: 'G',
+  url: 'https://github.com'
+}, {
+  logo: 'G',
+  url: 'https://www.google.cn'
+}, {
+  logo: 'T',
+  url: 'https://www.taobao.com'
+}, {
+  logo: 'T',
+  url: 'https://www.qq.com'
+}, {
+  logo: 'Z',
+  url: 'https://www.zhihu.com'
 }];
 
 var simplifyUrl = function simplifyUrl(url) {
-  return url.replace("https://", "").replace("http://", "").replace("www.", "");
+  return url.replace("https://", "").replace("http://", "").replace("www.", "").split('.')[0];
 }; //重写所有站点(除了添加框)
 
 
@@ -151,7 +166,7 @@ var render = function render() {
     }
   });
   hashMap.forEach(function (node, index) {
-    var $li = $("<li>          \n        <div class=\"site\">\n            <div class=\"logo\">".concat(node.logo, "</div>\n            <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n            <div class=\"close\">\n              <svg class=\"icon\">\n                  <use xlink:href=\"#icon-close\"></use>\n              </svg>\n            </div>\n        </div>\n      </li>")).insertBefore($lastLi); //事件监听
+    var $li = $("<li>          \n        <div class=\"site\">\n            <div class=\"logo\">".concat(node.logo, "</div>\n            <div class=\"link\">\n              <img src=\"").concat(node.url, "/favicon.ico\" alt=\"\">\n              ").concat(simplifyUrl(node.url), "\n            </div>\n            <div class=\"close\">\n              <svg class=\"icon\">\n                  <use xlink:href=\"#icon-close\"></use>\n              </svg>\n            </div>\n        </div>\n      </li>")).insertBefore($lastLi); //事件监听
 
     $li.on("click", function (e) {
       window.open(node.url);
@@ -215,4 +230,4 @@ $(document).on("keypress", function (e) {
   }
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.a55e8242.js.map
+//# sourceMappingURL=main.22d4d609.js.map

@@ -2,13 +2,38 @@ const $siteList = $(".siteList");
 const $lastLi = $siteList.find("li.last");
 const x = localStorage.getItem("x"); //没有则null
 const xObject = JSON.parse(x); //如果没有则null
-const hashMap = xObject || [
-  { logo: "A", url: "https://www.acfun.cn" },
-  { logo: "B", url: "https://www.bilibili.com" },
+const hashMap = xObject || [{
+    logo: "B",
+    url: "https://www.bilibili.com"
+  },
+  {
+    logo: 'B',
+    url: 'https://www.baidu.com'
+  },
+  {
+    logo: 'G',
+    url: 'https://github.com'
+  },
+  {
+    logo: 'G',
+    url: 'https://www.google.cn'
+  },
+  {
+    logo: 'T',
+    url: 'https://www.taobao.com'
+  },
+  {
+    logo: 'T',
+    url: 'https://www.qq.com'
+  },
+  {
+    logo: 'Z',
+    url: 'https://www.zhihu.com'
+  }
 ];
 
 const simplifyUrl = (url) => {
-  return url.replace("https://", "").replace("http://", "").replace("www.", "");
+  return url.replace("https://", "").replace("http://", "").replace("www.", "").split('.')[0]
 };
 
 //重写所有站点(除了添加框)
@@ -29,7 +54,10 @@ const render = () => {
       `<li>          
         <div class="site">
             <div class="logo">${node.logo}</div>
-            <div class="link">${simplifyUrl(node.url)}</div>
+            <div class="link">
+              <img src="${node.url}/favicon.ico" alt="">
+              ${simplifyUrl(node.url)}
+            </div>
             <div class="close">
               <svg class="icon">
                   <use xlink:href="#icon-close"></use>
@@ -68,7 +96,7 @@ $(".addButton").on("click", () => {
       if (
         hashMap[i].logo === logo &&
         simplifyUrl(hashMap[i].url).toLowerCase() ===
-          simplifyUrl(url).toLowerCase()
+        simplifyUrl(url).toLowerCase()
       ) {
         flag = false;
       }
